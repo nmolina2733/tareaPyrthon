@@ -7,6 +7,7 @@ class Alumno:
     modulo = ""
     jornada = ""
     codigoMatricula=0
+    
 
     def __init__(self,cod,nom,car,mo,jo,codma):
         self.codigoAlumno= cod
