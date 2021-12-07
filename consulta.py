@@ -9,9 +9,10 @@ def mostrarTodos():
 
 
     cursor = conexion.cursor()
-    cursor.execute('select * from Matricula')
+    cursor.execute('select * from notas')
     for line in cursor:
         print(line)
+        
     cursor.close()
     conexion.close()
 
@@ -83,15 +84,12 @@ def ingresarNotas():
 
 
     cursor = conexion.cursor()
-    codigo = input("Ingrese codigo prueba: ")
-    nombre = input("Ingrese Nombre alumno: ")
-    nota = input("Ingrese nota: ")
-    insertar ='''insert into notas values ('%s','%s','%s' )''' %(codigo,nombre,nota)
-    cursor.execute(insertar)
+    idNota = int(input("Ingrese id de nota para agregar: "))
+    notas = int(input("Ingrese nota: "))
+    cursor.execute('''insert into (idNota,nota1) from notas where idNota=:id  values (idNota.nextval, nota2=:nota)''',id=idNota, nota=notas)
     conexion.commit()
     cursor.close()
     conexion.close()
-
 def verNotas():
     conexion = cx_Oracle.connect(
     user = 'escuela',
