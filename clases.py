@@ -1,5 +1,7 @@
 import cx_Oracle
 
+from consulta import ingresarNotas, matricular
+
 class Alumno:
     codigoAlumno=0
     nombre = ""
@@ -42,6 +44,53 @@ class Alumno:
         print ("Matriculado correctamente")
         cursor.close()
         conexion.close()
+
+    def mostrarTodos():
+        conexion = cx_Oracle.connect(
+        user = 'escuela',
+        password = '1234',
+        dsn = 'localhost:1521/xe')
+
+
+        cursor = conexion.cursor()
+        cursor.execute('select * from alumnos')
+        for line in cursor:
+            print(line)
+        cursor.close()
+        conexion.close()
+
+    def ingresoNotas():
+        try:
+            conexion = cx_Oracle.connect(
+            user = 'escuela',
+            password = '1234',
+            dsn = 'localhost:1521/xe')
+            cursor = conexion.cursor()
+            idNota= int(input("Ingrese numero de nota a ingresar: "))
+            nota = int(input("Ingrese nota: "))
+            cursor.execute('''update notas set nota1=:no where idNota=:no1''',no=nota,no1=idNota)
+            conexion.commit()
+            print ("Nota agregada correctamente")
+        except:
+            print ("Error al ingresar nota")
+            
+        finally:
+            cursor.close()
+            conexion.close()
+
+    def mostrarNotas():
+        conexion = cx_Oracle.connect(
+        user = 'escuela',
+        password = '1234',
+        dsn = 'localhost:1521/xe')
+
+        cursor = conexion.cursor()
+        cursor.execute('select * from notas')
+        for line in cursor:
+            print(line)
+        cursor.close()
+        conexion.close()
+    
 
 class Profesor:
     codigoProfesor=0
@@ -118,6 +167,4 @@ class Jornada:
         self.codigoJornada=cj
         self.descripcion=des
         
-
-
 
