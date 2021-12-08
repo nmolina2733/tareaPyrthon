@@ -140,4 +140,4 @@ def menuUsuario():
                 print("Gracias por usar mi programa")
                 break
             else:
-                print("Opcion no valida !!")
+                print("Opcion no valida, intente nuevamente !!")
